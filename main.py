@@ -1,4 +1,6 @@
 import requests
+import functions
+
 
 api_key = "b420b2be71fc47ddade54c5bdbac676e"
 
@@ -13,9 +15,10 @@ request = requests.get(url)
 content = request.json()
 
 #Access the article titles and description
-a = 0
+
+body = ""
 for article in content["articles"]:
-    print(a + 1,"-----", article["title"])
-    print(a + 1,"-----", article["description"])
-    print(a + 1,"-----", article["content"] + "\n")
-    a = a + 1
+    body = body + article["description"] + "\n" + article["description"] + 2*"\n"
+
+body = body.encode("utf-8")
+functions.send_email(body)
