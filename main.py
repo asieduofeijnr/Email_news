@@ -18,7 +18,8 @@ content = request.json()
 
 body = ""
 for article in content["articles"]:
-    body = body + article["description"] + "\n" + article["description"] + 2*"\n"
+    body = body + article["description"] + "\n" + article["description"] + "\n" 
+    + article["url"] + 2*"\n"
 
 body = body.encode("utf-8")
 functions.send_email(body)
